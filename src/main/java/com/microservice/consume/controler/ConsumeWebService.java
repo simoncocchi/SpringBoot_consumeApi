@@ -57,4 +57,13 @@ public class ConsumeWebService {
                 "http://localhost:8081/cars/"+id, HttpMethod.DELETE, entity, String.class).getBody();
     }
 
+    @RequestMapping(value = "/test/{id}")
+    public String getCarById(@PathVariable("id") int id) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+        HttpEntity<String> entity = new HttpEntity<String>(headers);
+
+        return restTemplate.exchange("http://localhost:8081/cars/"+id, HttpMethod.GET, entity, String.class).getBody();
+    }
+
 }
